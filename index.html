@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPièces Pro — Recherche de pièces détachées</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Three.js r128 + Loaders (scripts classiques, pas de modules) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+    <!-- ===== BARRE SUPÉRIEURE ===== -->
+    <header class="top-bar">
+        <h1>🔧 AutoPièces Pro — Pièces détachées</h1>
+        <nav>
+            <a href="index.html" class="active">Recherche</a>
+            <a href="admin.html">Administration</a>
+        </nav>
+    </header>
+
+    <!-- ===== BARRE DE RECHERCHE ===== -->
+    <section class="search-section">
+        <div class="search-box">
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Rechercher une pièce... (ex: filtre, frein, camion)"
+                   autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+    </section>
+
+    <!-- ===== RÉSULTATS ===== -->
+    <section id="resultsSection" class="results-section hidden">
+        <div class="results-grid" id="resultsGrid"></div>
+    </section>
+
+    <!-- ===== DÉTAILS ===== -->
+    <section id="detailsSection" class="details-section hidden">
+        <button id="backBtn" class="back-btn">← Retour</button>
+
+        <div class="details-container">
+
+            <!-- Visionneuse 3D -->
+            <div class="viewer-3d" id="viewer3D">
+                <div class="viewer-info">🖱️ Glissez pour tourner • Molette pour zoomer</div>
+            </div>
+
+            <!-- Informations de la pièce -->
+            <div class="part-info">
+                <h2 id="partName"></h2>
+                <p class="sku">Référence : <span id="partSku"></span></p>
+                <p class="sku">Catégorie : <span id="partCategory"></span> • Marque : <span id="partBrand"></span></p>
+                <p class="price">Prix : <span id="partPrice"></span> MAD</p>
+                <p class="quantity">Quantité en stock : <span id="partQty"></span></p>
+
+                <!-- Description -->
+                <div class="info-block">
+                    <h3>📋 Description</h3>
+                    <p id="partDesc"></p>
+                </div>
+
+                <!-- Compatibilité -->
+                <div class="info-block">
+                    <h3>🚗 Véhicules compatibles</h3>
+                    <ul id="partCompatible"></ul>
+                </div>
+
+                <!-- Emplacement -->
+                <div class="info-block location-block">
+                    <h3>📍 Emplacement dans le magasin</h3>
+                    <div class="location-map">
+                        <div class="room-label" id="roomLabel"></div>
+                        <div class="shelf-visual" id="shelfVisual"></div>
+                        <div class="location-steps">
+                            <div class="step"><span>🚪</span><span id="locRoom"></span></div>
+                            <div class="step"><span>📚</span><span id="locShelf"></span></div>
+                            <div class="step"><span>📏</span><span id="locLevel"></span></div>
+                            <div class="step"><span>📦</span><span id="locBox"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACCUEIL ===== -->
+    <section id="welcomeSection" class="welcome-section">
+        <h2>Bienvenue 👋</h2>
+        <p>Recherchez une pièce détachée pour afficher ses détails et son emplacement exact dans le magasin</p>
+
+        <div class="quick-categories">
+            <button data-cat="Filtration">🔩 Filtration</button>
+            <button data-cat="Freinage">🛞 Freinage</button>
+            <button data-cat="Électricité">💡 Électricité</button>
+            <button data-cat="Carrosserie">🚗 Carrosserie</button>
+            <button data-cat="Camion">🚛 Camion</button>
+            <button data-cat="Transmission">🔩 Transmission</button>
+        </div>
+    </section>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="js/data.js"></script>
+    <script src="js/viewer3d.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

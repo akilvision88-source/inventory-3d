@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPièces Pro — Administration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+    <header class="top-bar admin-bar">
+        <h1>⚙️ AutoPièces Pro — Administration</h1>
+        <nav>
+            <a href="index.html">Recherche</a>
+            <a href="admin.html" class="active">Administration</a>
+        </nav>
+    </header>
+
+    <div class="admin-container">
+
+        <!-- Statistiques -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="statTotal">0</div>
+                <div class="stat-label">Pièces totales</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="statCategories">0</div>
+                <div class="stat-label">Catégories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="statLowStock">0</div>
+                <div class="stat-label">Stock faible</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="statValue">0</div>
+                <div class="stat-label">Valeur du stock (MAD)</div>
+            </div>
+        </div>
+
+        <!-- Formulaire d'ajout -->
+        <div class="admin-section">
+            <h2>➕ Ajouter une nouvelle pièce</h2>
+            <form id="addPartForm" class="admin-form">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nom de la pièce *</label>
+                        <input type="text" name="name" placeholder="Ex: Filtre à huile Toyota" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Référence (SKU) *</label>
+                        <input type="text" name="sku" placeholder="Ex: TOY-OF-2201" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Catégorie *</label>
+                        <input type="text" name="category" placeholder="Ex: Filtration" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Marque *</label>
+                        <input type="text" name="brand" placeholder="Ex: Toyota" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Prix (MAD) *</label>
+                        <input type="number" name="price" step="0.01" min="0" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantité *</label>
+                        <input type="number" name="quantity" min="0" placeholder="0" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="3" placeholder="Description de la pièce..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Véhicules compatibles (séparés par une virgule)</label>
+                    <input type="text" name="compatible" placeholder="Ex: Corolla 2020, Auris 2021">
+                </div>
+
+                <div class="form-group">
+                    <label>Fichier 3D (optionnel)</label>
+                    <input type="text" name="model3d" placeholder="Ex: models/part.glb">
+                </div>
+
+                <h3>📍 Emplacement dans le magasin</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Salle *</label>
+                        <input type="text" name="room" placeholder="Ex: Salle A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Étagère *</label>
+                        <input type="text" name="shelf" placeholder="Ex: A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Niveau *</label>
+                        <input type="number" name="level" min="1" placeholder="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Boîte *</label>
+                        <input type="number" name="box" min="1" placeholder="1" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">💾 Enregistrer la pièce</button>
+            </form>
+        </div>
+
+        <!-- Tableau des pièces -->
+        <div class="admin-section">
+            <h2>📦 Gestion des pièces</h2>
+            <div style="overflow-x:auto;">
+                <table class="parts-table">
+                    <thead>
+                        <tr>
+                            <th>Référence</th>
+                            <th>Nom</th>
+                            <th>Catégorie</th>
+                            <th>Quantité</th>
+                            <th>Prix</th>
+                            <th>Emplacement</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="partsTableBody">
+                        <tr>
+                            <td colspan="7" style="text-align:center; padding:2rem;">
+                                Chargement...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
